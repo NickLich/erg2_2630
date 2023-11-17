@@ -8,35 +8,63 @@ integer::rain(50)
 character(20)::town(50)
 integer::st
 integer,parameter::Nmax=50
+integer::N
 
 
-open(10,file='data.txt',status='old',iostat=st)
+
+call readfile(N,Nmax,town,rain)
 
 
-if (st/=0) then
-  write(*,*)'Sfalma'
-end if
+
+do i=1,N
+  print*,town(i),rain(i)
+end do
+
+
+contains
+
+subroutine readfile(N,Nmax,T,R)
+integer::k
+integer::st
+integer,intent(in)::Nmax
+character(20),intent(out)::T(Nmax)
+integer,intent(out)::R(Nmax)
+integer,intent(out)::N
+
+
   
+open(10,file='data.txt')
 
 
- read(10,*)
+  
+read(10,*)
 
 
-    do i=1,Nmax
-      read(10,*,iostat=st) town(i) , rain(i)
-        if (st/=0) exit
-    end do
+  
+k=1
+
+
+  
+do
+   read(10,*,iostat=st) T(k),R(k)
+  if (st/=0)exit
+
+k=k+1
+
+end do
+
+
 
 
 close(10)
 
 
-     print*, "Town","                    Average Yearly Rainfall (in millimeters)"
- 
- 
-do i=1,min(Nmax,i-1)
-print*,town(i),rain(i)
-end do
+N=k+1
 
+
+end subroutine    
+
+
+  
 
 end program
