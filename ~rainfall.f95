@@ -10,18 +10,24 @@ integer::st
 integer,parameter::Nmax=50
 integer::N
 
+
+
 call readfile(N,Nmax,town,rain)
 
 
+!PINAKAS ME POLEIS KAI BROXES
 print*,"Town","                      Average Yearly Rainfall (in millimeters)"
 do i=1,N
   print*,town(i),rain(i)
 end do
 
-
+!MESOS OROS
 print*,'Mesos Oros=',average(N,Nmax,rain)
 
 
+
+    
+!YPOROYTINA KAI SYNARTHSH GIA MESO ORO
 contains
 
 subroutine readfile(N,Nmax,T,R)
@@ -72,15 +78,7 @@ end do
 average=m/real(N)
 
 end function
-  
-
-
-
-
-
-
-
-
+ 
   
   
 
